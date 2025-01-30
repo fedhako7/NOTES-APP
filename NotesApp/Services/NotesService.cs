@@ -10,7 +10,7 @@ namespace NotesAppAPI.Services
         public NotesService(IConfiguration config)
         {
             var client = new MongoClient(config.GetConnectionString("MongoDb"));
-            var database = client.GetDatabase("NotesAppDB");
+            var database = client.GetDatabase("NotesAppDB ");
             _notesCollection = database.GetCollection<Note>("Notes");
         }
 
