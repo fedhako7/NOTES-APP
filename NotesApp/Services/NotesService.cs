@@ -12,7 +12,10 @@ namespace NotesAppAPI.Services
             var client = new MongoClient(config.GetConnectionString("MongoDb"));
             var database = client.GetDatabase("NotesAppDB");
             _notesCollection = database.GetCollection<Note>("Notes");
-            
         }
+
+        public async Task<List<Note>> GetAsync() =>
+            await _notesCollection.Find(_ => true).ToListAsync();
+
     }
 }

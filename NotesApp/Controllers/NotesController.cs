@@ -12,6 +12,10 @@ namespace NotesAppAPI.Controllers
 
         public NotesController(NotesService notesService) =>
             _notesService = notesService;
+
+        [HttpGet]
+        public async Task<List<Note>> Get() =>
+            await _notesService.GetAsync();
       
 
     }
