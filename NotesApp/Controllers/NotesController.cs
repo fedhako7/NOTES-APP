@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using NotesAppAPI.Models;
 using NotesAppAPI.Services;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace NotesAppAPI.Controllers
 {
@@ -13,34 +16,56 @@ namespace NotesAppAPI.Controllers
         public NotesController(NotesService notesService) =>
             _notesService = notesService;
 
+        // GET: api/notes
         [HttpGet]
-        public async Task<List<Note>> Get() =>
-            await _notesService.GetAsync();
-      
-
-    }
-            [HttpGet("{id}")]
-        public async Task<ActionResult<Note>> Get(string id)
+        public async Task<ActionResult<List<Note>>> Get()
         {
-            var note = await _notesService.GetByIdAsync(id);
-
-            if (note is null)
-                return NotFound();
-
-            return note;
+            try
+            {
+                var notes = await _notesService.GetAsync();
+                return Ok(notes);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
 
+        // GET: api/notes/{id}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Note>> Get(string id)
+        {
+            try
+            {
+                var note = await _notesService.GetByIdAsync(id);
+
+                if (note is null)
+                    return NotFound($"Note with ID '{id}' not found.");
+
+                return Ok(note);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        // POST: api/notes
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Note newNote)
         {
-            // Validate the model state
             if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
             {
-                return BadRequest(ModelState);  // Return a bad request if validation fails
+                await _notesService.CreateAsync(newNote);
+                return CreatedAtAction(nameof(Get), new { id = newNote.Id }, newNote);
             }
-
-            await _notesService.CreateAsync(newNote);
-            return CreatedAtAction(nameof(Get), new { id = newNote.Id }, newNote);
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
-
+    }
 }
