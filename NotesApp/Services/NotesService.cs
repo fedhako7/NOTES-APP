@@ -17,5 +17,10 @@ namespace NotesAppAPI.Services
         public async Task<List<Note>> GetAsync() =>
             await _notesCollection.Find(_ => true).ToListAsync();
 
+        public async Task<Note?> GetByIdAsync(string id) =>
+            await _notesCollection.Find(note => note.Id == id).FirstOrDefaultAsync();
+
+        public async Task CreateAsync(Note newNote) =>
+            await _notesCollection.InsertOneAsync(newNote);
     }
 }
