@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\MY PROJECTS\\Elective\\Notes App\\NotesApp\\NotesApp.csproj": {}
+    "C:\\Users\\sc0cp\\OneDrive\\Desktop\\New folder\\NOTES-APP\\NotesApp\\NotesApp.csproj": {}
   },
   "projects": {
-    "E:\\MY PROJECTS\\Elective\\Notes App\\NotesApp\\NotesApp.csproj": {
+    "C:\\Users\\sc0cp\\OneDrive\\Desktop\\New folder\\NOTES-APP\\NotesApp\\NotesApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\MY PROJECTS\\Elective\\Notes App\\NotesApp\\NotesApp.csproj",
+        "projectUniqueName": "C:\\Users\\sc0cp\\OneDrive\\Desktop\\New folder\\NOTES-APP\\NotesApp\\NotesApp.csproj",
         "projectName": "NotesApp",
-        "projectPath": "E:\\MY PROJECTS\\Elective\\Notes App\\NotesApp\\NotesApp.csproj",
-        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "E:\\MY PROJECTS\\Elective\\Notes App\\NotesApp\\obj\\",
+        "projectPath": "C:\\Users\\sc0cp\\OneDrive\\Desktop\\New folder\\NOTES-APP\\NotesApp\\NotesApp.csproj",
+        "packagesPath": "C:\\Users\\sc0cp\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sc0cp\\OneDrive\\Desktop\\New folder\\NOTES-APP\\NotesApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\sc0cp\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
