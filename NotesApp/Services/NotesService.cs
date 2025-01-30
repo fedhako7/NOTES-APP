@@ -22,5 +22,12 @@ namespace NotesAppAPI.Services
 
         public async Task CreateAsync(Note newNote) =>
             await _notesCollection.InsertOneAsync(newNote);
+        
+        // update async
+        public async Task UpdateAsync(string id, Note updatedNote) =>
+            await _notesCollection.ReplaceOneAsync(note => note.Id == id, updatedNote);
+
+        public async Task DeleteAsync(string id) =>
+            await _notesCollection.DeleteOneAsync(note => note.Id == id);
     }
 }
