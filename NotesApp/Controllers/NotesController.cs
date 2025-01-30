@@ -67,5 +67,40 @@ namespace NotesAppAPI.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+        
+        // update
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(string id, [FromBody] Note updatedNote)
+        {
+            // Validate the model state
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);  // Return a bad request if validation fails
+            }
+
+            var note = await _notesService.GetByIdAsync(id);
+
+            if (note is null)
+                return NotFound();
+
+            updatedNote.Id = note.Id;
+            await _notesService.UpdateAsync(id, updatedNote);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var note = await _notesService.GetByIdAsync(id);
+
+            if (note is null)
+                return NotFound();
+
+            await _notesService.DeleteAsync(id);
+
+            return NoContent();
+        }
+
     }
 }
